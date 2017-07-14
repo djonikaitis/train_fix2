@@ -13,7 +13,17 @@ if tid<=trials_to_plot
     set(gca,'XTick', [-20,20]);
     
 elseif tid > trials_to_plot
-        
+    
+    %     plotbins = [-0.25:0.25:5];
+    %     mat1 = zeros(1, length(plotbins)-1);
+    %     mat2 = zeros(1, length(plotbins)-1);
+    %
+    %
+    %     h=rectangle('Position', [-1, 0, 3, 105],...
+    %             'EdgeColor', [0.95, 0.85, 0.85], 'FaceColor', [0.95, 0.85, 0.85], 'Curvature', 0, 'LineWidth', 1);
+    
+
+    
     duration1 = expsetup.stim.edata_fixation_off(1:tid) - expsetup.stim.edata_fixation_acquired(1:tid);
     duration1 = duration1(~isnan(duration1));
     if ~isempty (duration1)
@@ -47,26 +57,36 @@ elseif tid > trials_to_plot
     end
     
     if ~isempty (plotbins)
-        for j=1:size(mat1,1)
-            total1 = sum(mat1(1,:));
-            mat0 = mat1(j,:)./total1*100;
-            h=plot(pbins, mat0, 'Color', color1(1,:), 'LineWidth', 1); % Plot eye position in space and time
-        end
+        
     end
-    
-    
-    % Figure settings
-    set(gca,'FontSize', fontsz);
-    set(gca,'YLim',[0, 70])
-    ylabel ('Occurences (%)', 'FontSize', fontszlabel);
-    set(gca,'YTick',[0:20:60]);
-    
-    xlabel ('Fixation duration, seconds', 'FontSize', fontszlabel);
-    set(gca,'XTick', [0, 1, 2, 3, 4], 'FontSize', fontszlabel);
-    set(gca,'XLim', [-0.5, 5]);
-    
-    % Legend
-    text(0, 65, 'Correct', 'Color', color1(1,:), 'FontSize', fontsz, 'HorizontalAlignment', 'left')
-    text(0, 58, 'Fixation break', 'Color', color1(5,:), 'FontSize', fontsz, 'HorizontalAlignment', 'left')
+
+    %
+    %    total1 = sum(mat1) + sum(mat2);
+    %     if total1>0
+    %         mat1 = mat1./total1;
+    %         mat1 = mat1*100;
+    %         h=plot(pbins, mat1, 'Color', color1(1,:), 'LineWidth', 1); % Plot eye position in space and time
+    %     end
+    %
+    %     if total1>0
+    %         mat2 = mat2./total1;
+    %         mat2 = mat2*100;
+    %         h=plot(pbins, mat2, 'Color', color1(5,:), 'LineWidth', 1); % Plot eye position in space and time
+    %     end
+    %
+    %
+    %     % Figure settings
+    %     set(gca,'FontSize', fontsz);
+    %     set(gca,'YLim',[0, 70])
+    %     ylabel ('Occurences (%)', 'FontSize', fontszlabel);
+    %     set(gca,'YTick',[0:25:75]);
+    %
+    %     xlabel ('Fixation duration, seconds', 'FontSize', fontszlabel);
+    %     set(gca,'XTick', [0, 1, 2, 3, 4], 'FontSize', fontszlabel);
+    %     set(gca,'XLim', [-0.5, 5]);
+    %
+    %     % Legend
+    %     text(0, 65, 'Correct', 'Color', color1(1,:), 'FontSize', fontsz, 'HorizontalAlignment', 'left')
+    %     text(0, 58, 'Fixation break', 'Color', color1(5,:), 'FontSize', fontsz, 'HorizontalAlignment', 'left')
     
 end

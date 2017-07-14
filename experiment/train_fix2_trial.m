@@ -97,7 +97,7 @@ while loop_over==0
     
     % ================
     % Initialize new frame index
-    frame_index1 = frame_index1+1;
+    c1_frame_index1 = c1_frame_index1+1;
     
     
     %% Update frames dependent on acquiring fixation
@@ -258,7 +258,7 @@ while loop_over==0
         if expsetup.general.recordeyes==1
             if timer1_now - timer1_start < timer1_duration % Record an error
                 if expsetup.stim.eframes_eye_target{tid}(c1_frame_index1, 1) == 1
-                    expsetup.stim.edata_fixation_acquired(tid,1) = timer_now;
+                    expsetup.stim.edata_fixation_acquired(tid,1) = timer1_now;
                     Eyelink('Message', 'fixation_acquired');
                 end
             elseif timer1_now - timer1_start >= timer1_duration % Record an error
@@ -266,7 +266,7 @@ while loop_over==0
             end
         elseif expsetup.general.recordeyes==0
             if timer1_now - timer1_start >= timer1_duration % Record an error
-                expsetup.stim.edata_fixation_acquired(tid,1) = timer_now;
+                expsetup.stim.edata_fixation_acquired(tid,1) = timer1_now;
             end
         end
           
@@ -284,7 +284,7 @@ while loop_over==0
         %
         timer1_start = expsetup.stim.edata_fixation_acquired(tid,1) + expsetup.stim.fixation_drift_maintain_minimum;
         %
-        timer1_duration = expsetup.stim.esetup_fixation_acquired(tid,1) + expsetup.stim.fixation_drift_maintain_maximum;
+        timer1_duration = expsetup.stim.edata_fixation_acquired(tid,1) + expsetup.stim.fixation_drift_maintain_maximum;
         
         if expsetup.general.recordeyes==1
             if timer1_now - timer1_start < timer1_duration % Record an error
@@ -292,12 +292,12 @@ while loop_over==0
                     expsetup.stim.edata_error_code{tid} = 'broke fixation before drift';
                 end
             elseif timer1_now - timer1_start >= timer1_duration % Record an error
-                expsetup.stim.edata_fixation_drift_maintained(tid,1) = timer_now;
+                expsetup.stim.edata_fixation_drift_maintained(tid,1) = timer1_now;
                 Eyelink('Message', 'fixation_drift_maintained');
             end
         elseif expsetup.general.recordeyes==0
             if timer1_now - timer1_start >= timer1_duration % Record an error
-                expsetup.stim.edata_fixation_drift_maintained(tid,1) = timer_now;
+                expsetup.stim.edata_fixation_drift_maintained(tid,1) = timer1_now;
             end
         end
         
@@ -346,12 +346,12 @@ while loop_over==0
                     expsetup.stim.edata_error_code{tid} = 'broke fixation';
                 end
             elseif timer1_now - timer1_start >= timer1_duration % Record an error
-                expsetup.stim.edata_fixation_maintained(tid,1) = timer_now;
+                expsetup.stim.edata_fixation_maintained(tid,1) = timer1_now;
                 Eyelink('Message', 'fixation_maintained');
             end
         elseif expsetup.general.recordeyes==0
             if timer1_now - timer1_start >= timer1_duration % Record an error
-                expsetup.stim.edata_fixation_maintained(tid,1) = timer_now;
+                expsetup.stim.edata_fixation_maintained(tid,1) = timer1_now;
             end
         end
     end
@@ -501,7 +501,12 @@ else % Error trials
     trial_duration = expsetup.stim.trial_dur_intertrial_error;
 end
 
-endloop_skip = 0;
+if strcmp(char,'x') || strcmp(char,'r')
+    endloop_skip = 1;
+else
+    endloop_skip = 0;
+end
+
 while endloop_skip == 0;
     
     % Record what kind of button was pressed

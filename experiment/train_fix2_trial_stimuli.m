@@ -17,7 +17,7 @@ sz1 = expsetup.stim.esetup_fix_size(tid,1:4);
 fixation_rect = runexp_convert_deg2pix_rect_v10(coord1, sz1); % One column - one object;
 
 % Fixation for eyelink drift
-sz1 = expsetup.stim.esetup_fix_size_dirft(tid,1:4);
+sz1 = expsetup.stim.esetup_fix_size_drift(tid,1:4);
 fixation_rect_eyelink_drift = runexp_convert_deg2pix_rect_v10(coord1, sz1); % One column - one object;
 
 % Fixation for eyelink tracking

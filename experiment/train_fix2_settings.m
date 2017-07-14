@@ -50,7 +50,7 @@ rad=8; % Center-fixation distance
 stim.fixation_radius = [0 repmat(rad, 1, length(stim.fixation_arc))]; % Center-fixation distance
 
 % Fixation duration
-stim.fixation_acquire_duration = [30]; % How long to show fixation before it is acquired
+stim.fixation_acquire_duration = [0.2]; % How long to show fixation before it is acquired
 stim.fixation_maintain_duration = [2.5:0.01:3.5]; % Time to maintain target before stuff starts happening
 
 
@@ -141,8 +141,8 @@ stim.edata_fixation_off = NaN;
 stim.edata_reward_on = NaN;
 
 % Reward
-stim.data_reward_size_ms = NaN; % How much reward animal was given
-stim.data_reward_size_ml = NaN; % How much reward animal was given
+stim.edata_reward_size_ms = NaN; % How much reward animal was given
+stim.edata_reward_size_ml = NaN; % How much reward animal was given
 
 % Variables for eyetracking plotting
 stim.edata_eyelinkscreen_drift_on = NaN; % Drift stimulus window drawn on eyelink screen

@@ -23,20 +23,16 @@ elseif tid>=trials_to_plot % Plot data
         ind = intervalbins(j)-trials_to_plot+1:intervalbins(j);
         
         % Correct trials
-        index1 = expsetup.stim.expmatrix(ind,em_data_reject)==1;
+        index1 = strcmp('correct', expsetup.stim.edata_error_code(1:tid));
         temp1(1,j)= sum(index1);
         % Aborted trials
-        index1 = expsetup.stim.expmatrix(ind,em_data_reject)==2 | ...
-            expsetup.stim.expmatrix(ind,em_data_reject)==3;
+        index1 = strcmp('fixation not acquired in time', expsetup.stim.edata_error_code(1:tid)) | ...
+            strcmp('experimenter terminated the trial', expsetup.stim.edata_error_code(1:tid));
         temp1(2,j)= sum(index1);
         % Fixation break (likely looked at memory)
-        index1 = expsetup.stim.expmatrix(ind,em_data_reject)==4;
+        index1 = strcmp('broke fixation before drift', expsetup.stim.edata_error_code(1:tid)) | ...
+            strcmp('broke fixation', expsetup.stim.edata_error_code(1:tid));
         temp1(3,j)= sum(index1);
-        % Saccade response errors
-        index1 = expsetup.stim.expmatrix(ind,em_data_reject)==5 | ...
-            expsetup.stim.expmatrix(ind,em_data_reject)==6 | ...
-            expsetup.stim.expmatrix(ind,em_data_reject)==7;
-        temp1(4,j)= sum(index1);
         
     end
     
@@ -59,9 +55,6 @@ elseif tid>=trials_to_plot % Plot data
         elseif i==3
             graphcond=4;
             text(-log(1), 118, 'Fix break', 'Color', color1(graphcond,:), 'FontSize', fontsz, 'HorizontalAlignment', 'right')
-        elseif i==4
-            graphcond=5;
-            text(-log(1), 108, 'Saccade errors', 'Color', color1(graphcond,:), 'FontSize', fontsz, 'HorizontalAlignment', 'right')
         end
         % Lines
         h = plot(plot_bins(:), temp1(i,:));
