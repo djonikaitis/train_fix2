@@ -20,8 +20,8 @@ global expsetup
 % expsetup.general.directory_baseline_code = 'C:\Users\Rig-E\Desktop\Experiments\';
 % expsetup.general.directory_baseline_data = 'C:\Users\Rig-E\Desktop\Experiments_data\';
 % expsetup.general.directory_baseline_data_server = 'Z:\data\RigE\Experiments_data\';
-expsetup.general.directory_baseline_code = '~/proj/experiments/';
-expsetup.general.directory_baseline_data = '~/proj/experiments_data/';
+expsetup.general.directory_baseline_code = 'C:\Users\psychtoolbox b\Desktop\Experiments\';
+expsetup.general.directory_baseline_data = 'C:\Users\psychtoolbox b\Desktop\Experiments_data\';
 
 
 % This is viewpix display
@@ -37,7 +37,7 @@ expsetup.general.audio_target_device=[];
 expsetup.ni_daq.device_name = 'dev1';
 
 % Reward settings
-expsetup.ni_daq.reward_channel_id = 'ao2';
+expsetup.ni_daq.reward_channel_id = 'ao0';
 expsetup.ni_daq.reward_rate = 1000;
 expsetup.ni_daq.reward_measurement_type = 'Voltage';
 expsetup.ni_daq.reward_voltage = 10;

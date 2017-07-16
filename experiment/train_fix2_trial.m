@@ -478,7 +478,9 @@ end
 if expsetup.general.reward_on == 1
     if strcmp(expsetup.stim.edata_error_code{tid}, 'correct') || strcmp(char, 'space') || strcmp(char, 'r')
         ni.session_reward.startForeground;
-        Eyelink('Message', 'reward_on');
+        if expsetup.general.recordeyes==1
+            Eyelink('Message', 'reward_on');
+        end
         expsetup.stim.edata_reward_on(tid) = GetSecs;
         % Save how much reward was given
         expsetup.stim.edata_reward_size_ms(tid,1)=expsetup.stim.reward_size_ms;
@@ -531,7 +533,9 @@ while endloop_skip == 0;
         
         if expsetup.general.reward_on == 1
             ni.session_reward.startForeground;
-            Eyelink('Message', 'reward_on');
+            if expsetup.general.recordeyes==1
+                Eyelink('Message', 'reward_on');
+            end
             expsetup.stim.edata_reward_on(tid) = GetSecs;
             % Save how much reward was given
             expsetup.stim.edata_reward_size_ms(tid,1)=expsetup.stim.reward_size_ms;
