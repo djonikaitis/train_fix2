@@ -12,7 +12,7 @@ if ~isnan(expsetup.stim.edata_fixation_on(tid))
     % Radius & window
     [fix_xc, fix_yc] = RectCenter(fixation_rect);
     x1=fix_xc-expsetup.screen.dispcenter(1); y1=fix_yc-expsetup.screen.dispcenter(2);
-    x1=x1/expsetup.screen.deg2pix; y1=y1/deg2pix; % Convert to degrees
+    x1=x1/expsetup.screen.deg2pix; y1=y1/expsetup.screen.deg2pix; % Convert to degrees
     eyecoord1 = sqrt(x1.^2 + y1.^2); % Calculate amplitude of the eye position
     radius1 = eyecoord1;
     if expsetup.stim.esetup_fixation_drift_correction_on(tid)==1
@@ -55,7 +55,7 @@ if ~isnan(expsetup.stim.edata_fixation_drift_maintained(tid))
     % Radius & window
     [fix_xc, fix_yc] = RectCenter(fixation_rect);
     x1=fix_xc-expsetup.screen.dispcenter(1); y1=fix_yc-expsetup.screen.dispcenter(2);
-    x1=x1/expsetup.screen.deg2pix; y1=y1/deg2pix; % Convert to degrees
+    x1=x1/expsetup.screen.deg2pix; y1=y1/expsetup.screen.deg2pix; % Convert to degrees
     eyecoord1 = sqrt(x1.^2 + y1.^2); % Calculate amplitude of the eye position
     radius1 = eyecoord1;
     saccwindow = expsetup.stim.esetup_fix_size_eyetrack(tid,4);
