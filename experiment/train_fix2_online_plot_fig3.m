@@ -91,7 +91,7 @@ end
 %==============
 
 % Eye position
-sx2 = [expsetup.stim.eframes_time, expsetup.stim.eframes_eye_x, expsetup.stim.eframes_eye_y]; % Data to be used
+sx2 = [expsetup.stim.eframes_time{tid}, expsetup.stim.eframes_eye_x{tid}, expsetup.stim.eframes_eye_y{tid}]; % Data to be used
 sx2(:,1) = sx2(:,1) - sx2(1,1); % Reset time to 0
 sx2(:,1) = sx2(:,1) * 1000; % Convert to miliseconds
 ind=sx2(:,2)==0; % Replace zeros (no recording)

@@ -13,8 +13,8 @@ stim.training_stage_matrix = [1]; % Different levels of task difficulty. Select 
 
 % Training stage 2.0
 % Increase fixation duration.
-stim.fixation_maintain_duration = [3.0:0.01:4.0];
-stim.fixation_maintain_duration_ini = 0.1;
+stim.fixation_maintain_duration = [2];
+stim.fixation_maintain_duration_ini = 1.6;
 stim.fixation_maintain_duration_ini_step = 0.1;
 
 
@@ -65,13 +65,13 @@ stim.fixation_acquire_duration = [5]; % How long to show fixation before it is a
 stim.fixation_drift_correction_on = 1; % 1 - drift correction initiated
 stim.fixation_size_drift = 5; % Larger fixation window for drift correction
 stim.fixation_drift_maintain_maximum = 0.3; % After that much time drift correction starts
-stim.fixation_drift_maintain_minimum = 0.1; % That long duration is used for determining drift position
+stim.fixation_drift_maintain_minimum = 0.2; % That long duration is used for determining drift position
 if isfield(expsetup.general, 'subject_id') && strcmp(expsetup.general.subject_id(1:2), 'aq')
     stim.fixation_size_eyetrack = 2.5; % Window within which to maintain fixation
 elseif isfield(expsetup.general, 'subject_id') && strcmp(expsetup.general.subject_id(1:2), 'hb')
-    stim.fixation_size_eyetrack = 2.8; % Window within which to maintain fixation
+    stim.fixation_size_eyetrack = 3; % Window within which to maintain fixation
 else
-    stim.fixation_size_eyetrack = 2.5; % Window within which to maintain fixation
+    stim.fixation_size_eyetrack = 10; % Window within which to maintain fixation
 end
 
 

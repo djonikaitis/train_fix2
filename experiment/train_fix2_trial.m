@@ -6,7 +6,7 @@ window = expsetup.screen.window;
 %% Exp stage (either keep the same or change the task)
 
 if tid==1
-    expsetup.stim.exp_version_temp = 1; % Version to start with on the first trial
+    expsetup.stim.exp_version_temp = 2; % Version to start with on the first trial
     expsetup.stim.exp_version_update_next_trial = 0;
     fprintf('Task level is %.2f\n', expsetup.stim.exp_version_temp)
 elseif tid>1
@@ -16,8 +16,12 @@ elseif tid>1
     elseif expsetup.stim.exp_version_update_next_trial == 1 % Change the task
         a = expsetup.stim.esetup_exp_version(tid-1,1); % Take previous trial exp version
         b = expsetup.stim.training_stage_matrix (expsetup.stim.training_stage_matrix<a); % Other available exp versions
-        b = b(end);
-        expsetup.stim.exp_version_temp = b; % Take largest available number (smallest number is end of training)
+        if ~isempty(b)
+            b = b(end);
+            expsetup.stim.exp_version_temp = b; % Take largest available number (smallest number is end of training)
+        else
+            b=1;
+        end
     end
     fprintf('Task level is %.2f\n', b)
 end
@@ -290,7 +294,7 @@ while loop_over==0
         %
         timer1_start = expsetup.stim.edata_fixation_acquired(tid,1) + expsetup.stim.fixation_drift_maintain_minimum;
         %
-        timer1_duration = expsetup.stim.edata_fixation_acquired(tid,1) + expsetup.stim.fixation_drift_maintain_maximum;
+        timer1_duration = expsetup.stim.fixation_drift_maintain_maximum - expsetup.stim.fixation_drift_maintain_minimum;
         
         if expsetup.general.recordeyes==1
             if timer1_now - timer1_start < timer1_duration % Record an error
@@ -312,12 +316,12 @@ while loop_over==0
     % Deterine the error to be updated for drift correction
     if expsetup.general.recordeyes == 1 && ~isnan(expsetup.stim.edata_fixation_drift_maintained(tid,1)) && isnan(expsetup.stim.edata_fixation_drift_calculated(tid,1))
         a = expsetup.stim.fixation_drift_maintain_maximum - expsetup.stim.fixation_drift_maintain_minimum;
-        t1 = a/expsetup.screen.ifi;
+        t1 = round(a/expsetup.screen.ifi);
         ind1 = (c1_frame_index1 - t1 + 1 : 1 : c1_frame_index1);
         if numel(ind1)>1
             % Data points with recorded saccade position
-            x1 = expsetup.stim.eframes_eye_x(ind1,1);
-            y1 = expsetup.stim.eframes_eye_y(ind1,1);
+            x1 = expsetup.stim.eframes_eye_x{tid}(ind1,1);
+            y1 = expsetup.stim.eframes_eye_y{tid}(ind1,1);
             % Determine average position
             x1 = mean(x1);
             y1 = mean(y1);
@@ -459,7 +463,7 @@ fprintf('Trial evaluation: %s\n', expsetup.stim.edata_error_code{tid})
 % Check whether trial is counted towards online performance tracking. In
 % some cases correct trials can be discounted.
 
-if expsetup.stim.esetup_exp_version(tid,1) ==1
+if expsetup.stim.esetup_exp_version(tid,1) <=2
     if strcmp(expsetup.stim.edata_error_code{tid}, 'correct')
         expsetup.stim.edata_trial_online_counter(tid,1) = 1;
     elseif strcmp(expsetup.stim.edata_error_code{tid}, 'broke fixation') || strcmp(expsetup.stim.edata_error_code{tid}, 'broke fixation before drift')

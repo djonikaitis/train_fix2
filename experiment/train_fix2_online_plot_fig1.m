@@ -25,7 +25,7 @@ for i = 1:numel(var1_names)
     if tid<=min_trials_to_plot
         h=bar(plotbins(i), sum(ind1), barwdh); % Plot all trials
     else
-        h=bar(plotbins(i), sum(ind)/tid*100, barwdh); % Plot proportion
+        h=bar(plotbins(i), sum(ind1)/tid*100, barwdh); % Plot proportion
     end
     graphcond=i;
     set (h(end), 'LineWidth', wlinegraph, 'EdgeColor', color1(graphcond,:), 'FaceColor', color1(graphcond,:));
@@ -64,7 +64,7 @@ if tid>min_trials_to_plot
     end
     index1 = strcmp('correct', expsetup.stim.edata_error_code);
     a = sprintf ('\nCorrect trials: %i (%i percent) \n', sum(index1), round((sum(index1)/tid)*100));
-    text(plotbins(end), 10, a, 'Color', [0.2, 0.2, 0.2], 'FontSize', fontsz, 'HorizontalAlignment', 'right');
+    text(plotbins(end), 110, a, 'Color', [0.2, 0.2, 0.2], 'FontSize', fontsz, 'HorizontalAlignment', 'right');
 end
 
 
