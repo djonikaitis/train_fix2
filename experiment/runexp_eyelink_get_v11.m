@@ -4,15 +4,18 @@
 % global variable (necessary) - is is eyetracking experiment or not
 %
 % v1.0 DJ: February 11, 2015
+% v1.1 DJ: August 16, 2017. Bug fix.
 
 
-function [mx, my] = runexp_eyelink_get_v10
+function [mx, my] = runexp_eyelink_get_v11
 
 %% Settings
 
 global expsetup;
-el = expsetup.eyelink;
 recordeyes = expsetup.general.recordeyes;
+if isfield('eyelink', expsetup)
+    el = expsetup.eyelink;
+end
 
 %% Get sample
 

@@ -146,7 +146,7 @@ while loop_over==0
     %%  Get eyelink data sample
     
     try
-        [mx,my] = runexp_eyelink_get_v10;
+        [mx,my] = runexp_eyelink_get_v11;
         expsetup.stim.eframes_eye_x{tid}(c1_frame_index1, 1)=mx;
         expsetup.stim.eframes_eye_y{tid}(c1_frame_index1, 1)=my;
     catch

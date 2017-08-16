@@ -78,7 +78,7 @@ expsetup.stim.esetup_fixation_maintain_duration(tid,1) = temp1(1);
 expsetup.stim.esetup_fixation_drift_correction_on(tid,1) = expsetup.stim.fixation_drift_correction_on;
 
 % What is starting drift error? 0 by default
-expsetup.stim.esetup_fixation_drift_error (tid,1:2) = 0;
+expsetup.stim.esetup_fixation_drift_offset (tid,1:2) = 0;
 
 %% If previous trial was an error, then copy settings of the previous trial
 
