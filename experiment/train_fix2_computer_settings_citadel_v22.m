@@ -16,10 +16,6 @@ global expsetup
 % for example experiment "attention1" is contained in the folder called "experiments"
 % In this case set path to experiments
 
-
-% expsetup.general.directory_baseline_code = 'C:\Users\Rig-E\Desktop\Experiments\';
-% expsetup.general.directory_baseline_data = 'C:\Users\Rig-E\Desktop\Experiments_data\';
-% expsetup.general.directory_baseline_data_server = 'Z:\data\RigE\Experiments_data\';
 expsetup.general.directory_baseline_code = 'C:\Users\psychtoolbox b\Desktop\Experiments\';
 expsetup.general.directory_baseline_data = 'C:\Users\psychtoolbox b\Desktop\Experiments_data\';
 

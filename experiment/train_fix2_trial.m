@@ -22,6 +22,12 @@ elseif tid>1
     fprintf('Task level is %.2f\n', b)
 end
 
+% Update performance if necessary
+if expsetup.stim.exp_version_temp~=1
+    runexp_trial_update_performance_v10
+end
+
+
 
 %% PREPARE ALL OBJECTS AND FRAMES TO BE DRAWN:
 

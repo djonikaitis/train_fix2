@@ -11,6 +11,12 @@ stim.training_stage_matrix = [1]; % Different levels of task difficulty. Select 
 % Training stage 1.0
 % Is final stage. No changes to the code
 
+% Training stage 2.0
+% Increase fixation duration.
+stim.fixation_maintain_duration = [3.0:0.01:4.0];
+stim.fixation_maintain_duration_ini = 0.1;
+stim.fixation_maintain_duration_ini_step = 0.1;
+
 
 %%  Reward
 
@@ -50,8 +56,7 @@ rad=8; % Center-fixation distance
 stim.fixation_radius = [0 repmat(rad, 1, length(stim.fixation_arc))]; % Center-fixation distance
 
 % Fixation duration
-stim.fixation_acquire_duration = [0.2]; % How long to show fixation before it is acquired
-stim.fixation_maintain_duration = [2.5:0.01:3.5]; % Time to maintain target before stuff starts happening
+stim.fixation_acquire_duration = [5]; % How long to show fixation before it is acquired
 
 
 %===============
@@ -113,6 +118,8 @@ stim.instrpic{2}='image_condition2';
 
 % Specify column names for expmatrix
 stim.esetup_exp_version = NaN; % Which task participant is doing
+stim.edata_first_display = NaN;
+stim.edata_loop_over = NaN;
 
 stim.esetup_fix_arc = NaN;  % Fixation x position
 stim.esetup_fix_radius = NaN;  % Fixation x position
@@ -130,13 +137,11 @@ stim.esetup_fixation_drift_correction_on = NaN; % Do drift correction or not?
 stim.esetup_fixation_drift_offset(1,1:2) = NaN; % X-Y offset for the drift;
 
 % Stim timing recorded
-stim.edata_first_display = NaN; 
 stim.edata_fixation_on = NaN; 
 stim.edata_fixation_acquired = NaN; 
 stim.edata_fixation_maintained = NaN; 
 stim.edata_fixation_drift_maintained = NaN;
 stim.edata_fixation_drift_calculated = NaN; % Moment when calculations of the drift are done
-stim.edata_loop_over = NaN; 
 stim.edata_fixation_off = NaN; 
 stim.edata_reward_on = NaN;
 

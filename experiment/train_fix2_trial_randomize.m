@@ -67,7 +67,11 @@ temp1=Shuffle(expsetup.stim.fixation_acquire_duration);
 expsetup.stim.esetup_fixation_acquire_duration(tid,1) = temp1(1);
  
 % Fixation maintain duration
-temp1=Shuffle(expsetup.stim.fixation_maintain_duration);
+if expsetup.stim.esetup_exp_version(tid, 1) ==1
+    temp1 = Shuffle(expsetup.stim.fixation_maintain_duration);
+elseif expsetup.stim.esetup_exp_version(tid, 1) == 2
+    temp1 = Shuffle(tv1(1).temp_var_current);
+end
 expsetup.stim.esetup_fixation_maintain_duration(tid,1) = temp1(1);
 
 % Do drift correction or not?

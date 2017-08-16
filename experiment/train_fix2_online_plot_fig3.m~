@@ -112,36 +112,24 @@ end
 set (gca,'FontSize', fontsz);
 
 % Set the legend
-text(0, 10, expsetup.stim.edata_error_code{tid}, 'Color', color1(1,:), 'FontSize', fontszlabel, 'HorizontalAlignment', 'left')
-
+text(0, 13, expsetup.stim.edata_error_code{tid}, 'Color', color1(1,:), 'FontSize', fontszlabel, 'HorizontalAlignment', 'left')
 
 % Y axis
-% if exist('t1_xc') && exist('t1_yc')
-%     
-%     x1=t1_xc-dispcenter(1); y1=t1_yc-dispcenter(2);
-%     x1=x1./deg2pix; y1=y1./deg2pix;
-%     eyecoord1 = sqrt(x1.^2 + y1.^2); % Calculate amplitude of the eye position
-%     eyecoord1=[0, 2, 4, 8, 10];
-%     if eyecoord1~=0 % For peripheral targets
-%         set(gca,'YTick',eyecoord1);
-%     else % For central targets
-%         % Nothing at the moment
-%     end
-% end
+eyecoord1=[0, 4, 8, 12];
+set(gca,'YTick',eyecoord1);
 
-set(gca,'YLim',[-6.5, 12]);
+set(gca,'YLim',[-6.5, 15]);
 ylabel ('Gaze position, deg', 'FontSize', fontszlabel)
 
-% % X axis
-% if ~isnan(expsetup.stim.expmatrix(tid,em_data_memory_on)) && ~isnan(expsetup.stim.expmatrix(tid,em_data_response_on))
-%     set(gca,'XTick', [0, ...
-%         round((expsetup.stim.expmatrix(tid,em_data_memory_on) - expsetup.stim.expmatrix(tid,em_data_first_display))*1000),...
-%         round((expsetup.stim.expmatrix(tid,em_data_response_on) - expsetup.stim.expmatrix(tid,em_data_first_display))*1000),...
-%         round((expsetup.stim.expmatrix(tid,em_data_last_display) - expsetup.stim.expmatrix(tid,em_data_first_display))*1000)])
-% else
-%     set(gca,'XTick', [0, round((expsetup.stim.expmatrix(tid,em_data_last_display) - expsetup.stim.expmatrix(tid,em_data_first_display))*1000)])
-% end
-% a1 = (expsetup.stim.expmatrix(tid,em_data_last_display) - expsetup.stim.expmatrix(tid,em_data_first_display))*1000;
-% set(gca,'XLim',[-250,a1+250]);
-% xlabel ('Time from trial start (ms)', 'FontSize', fontszlabel)
+% X axis
+if ~isnan(expsetup.stim.edata_fixation_acquired(tid)) && ~isnan(expsetup.stim.edata_fixation_off(tid))
+    set(gca,'XTick', [0, ...
+        round(    (expsetup.stim.edata_fixation_acquired(tid) - expsetup.stim.edata_first_display(tid)) * 1000    ), ...
+        round(    (expsetup.stim.edata_fixation_off(tid) - expsetup.stim.edata_first_display(tid)) * 1000     )  ]);
+else
+    set(gca,'XTick', [0, round(    (expsetup.stim.edata_loop_over(tid)- expsetup.stim.edata_first_display(tid)) * 1000   ) ]);
+end
+a1 = (expsetup.stim.edata_loop_over(tid) - expsetup.stim.edata_first_display(tid)) * 1000;
+set(gca,'XLim',[-250,a1+250]);
+xlabel ('Time from trial start (ms)', 'FontSize', fontszlabel)
 

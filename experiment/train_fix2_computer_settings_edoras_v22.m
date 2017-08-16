@@ -17,12 +17,9 @@ global expsetup
 % In this case set path to experiments
 
 
-% expsetup.general.directory_baseline_code = 'C:\Users\Rig-E\Desktop\Experiments\';
-% expsetup.general.directory_baseline_data = 'C:\Users\Rig-E\Desktop\Experiments_data\';
-% expsetup.general.directory_baseline_data_server = 'Z:\data\RigE\Experiments_data\';
-expsetup.general.directory_baseline_code = '~/proj/experiments/';
-expsetup.general.directory_baseline_data = '~/proj/experiments_data/';
-
+expsetup.general.directory_baseline_code = 'C:\Users\Rig-E\Desktop\Experiments\';
+expsetup.general.directory_baseline_data = 'C:\Users\Rig-E\Desktop\Experiments_data\';
+expsetup.general.directory_baseline_data_server = 'Z:\data\RigE\Experiments_data\';
 
 % This is viewpix display
 expsetup.general.monwidth_cm = 52; % Horizontal dimension of viewable screen (cm)
